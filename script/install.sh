@@ -1,7 +1,7 @@
 #!/bin/bash
 
-yum install -y httpd
-systemctl start httpd
-systemctl enable httpd
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
 
-echo "hello, ${name} enviornment is ${env}" > /var/www/html/index.html
+sudo echo "hello, ${name} enviornment is ${env}" > /var/www/html/index.html
