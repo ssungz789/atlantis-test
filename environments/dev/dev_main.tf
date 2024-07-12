@@ -8,5 +8,5 @@ module "all_module" {
 }
 
 output "instance_public_ip" {
-  value = module.all_module.public_ip
+  value = module.all_module.instance_public_ip
 }
