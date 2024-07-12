@@ -1,0 +1,38 @@
+version: 3
+projects:
+- name: dev
+  dir: environments/dev
+  workflow: dev-workflow
+  autoplan:
+    when_modified: ["*.tf", "../../modules/**/*.tf", "../../variables/dev.tfvars"]
+    enabled: true
+
+- name: prod
+  dir: environments/prod
+  workflow: prod-workflow
+  autoplan:
+    when_modified: ["*.tf", "../../modules/**/*.tf", "../../variables/prod.tfvars"]
+    enabled: true
+
+workflows:
+  dev-workflow:
+    plan:
+      steps:
+      - init:
+          extra_args: ["-backend-config=../../variables/dev.tfvars"]
+      - plan:
+          extra_args: ["-var-file=../../variables/dev.tfvars"]
+    apply:
+      steps:
+      - run: terraform apply -input=false $PLANFILE
+
+  prod-workflow:
+    plan:
+      steps:
+      - init:
+          extra_args: ["-backend-config=../../variables/prod.tfvars"]
+      - plan:
+          extra_args: ["-var-file=../../variables/prod.tfvars"]
+    apply:
+      steps:
+      - run: terraform apply -input=false $PLANFILE
