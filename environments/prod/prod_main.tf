@@ -4,6 +4,7 @@ module "all_module" {
   key_name = var.key_name
   instance_name = "prod"
   instance_type = var.instance_type
+  subnet_id = "subnet-0baf083df14d1bdba"
   environment = "Prod"
 }
 

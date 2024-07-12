@@ -21,7 +21,6 @@ variable "key_name" {
 variable "subnet_id" {
   description = "pub subnet name"
   type        = string
-  default = "subnet-08b6c51d756448340"
 }
 
 variable "instance_name" {
